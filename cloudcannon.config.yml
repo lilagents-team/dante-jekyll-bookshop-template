@@ -1,0 +1,992 @@
+_schema: _schema
+source: site
+paths:
+  uploads: uploads
+  uploads_use_relative_path: false
+  static: ''
+  dam_uploads: ''
+  dam_static: ''
+  collections: ''
+  data: _data
+  layouts: _layouts
+  includes: _includes
+collections_config:
+  pages:
+    path: ''
+    icon: notes
+    output: true
+    filter: strict
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: schemas/page.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        icon: notes
+  portfolio_pages:
+    path: _portfolio-pages
+    name: Portfolio Pages
+    singular_name: Portfolio Page
+    icon: more
+    output: false
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: schemas/portfolio-page.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        icon: notes
+  staff_members:
+    path: _staff_members
+    name: Staff Members
+    singular_name: Team
+    icon: groups
+    output: true
+    sort:
+      key: title
+    sort_options:
+      - key: title
+      - key: title
+        order: desc
+      - key: designation
+      - key: designation
+        order: desc
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: schemas/staff_members.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        icon: notes
+  posts:
+    path: _posts
+    name: Posts
+    singular_name: Post
+    icon: description
+    output: true
+    create:
+      path: >-
+        [relative_base_path]/{date|year}-{date|month}-{date|day}-{title|slugify}.[ext]
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: schemas/post.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        icon: notes
+  portfolio:
+    path: _portfolio
+    name: Portfolio
+    singular_name: Portfolio
+    icon: work_outline
+    output: true
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: schemas/portfolio.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        icon: notes
+  data:
+    path: _data
+    icon: notes
+    output: false
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+  drafts:
+    path: _drafts
+    name: Drafts
+    singular_name: Draft
+    icon: mdi:insert_invitation
+    output: true
+    create:
+      publish_to: posts
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: schemas/post.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        icon: notes
+collection_groups:
+  - heading: Pages
+    collections:
+      - pages
+      - portfolio
+      - portfolio_pages
+      - staff_members
+  - heading: Blog
+    collections:
+      - posts
+      - drafts
+  - heading: Settings
+    collections:
+      - data
+_inputs:
+  date:
+    type: auto
+    instance_value: NOW
+    cascade: true
+  datetime:
+    type: auto
+    instance_value: NOW
+    cascade: true
+  post_settings.layout:
+    type: select
+    options:
+      allow_empty: true
+      values: _select_data.post_layouts
+    cascade: true
+  portfolio_settings.layout:
+    type: select
+    options:
+      allow_empty: true
+      values: _select_data.post_layouts
+    cascade: true
+  url:
+    type: auto
+    comment: Enter the page url
+    cascade: true
+  logo_image:
+    type: auto
+    comment: Use logo icon here
+    cascade: true
+  logo_width:
+    type: auto
+    comment: Enter logo width (default 150px)
+    cascade: true
+  favicon_image:
+    type: auto
+    comment: Use favicon here
+    cascade: true
+  login_url:
+    type: auto
+    comment: Enter login link in menu
+    cascade: true
+  signup_url:
+    type: auto
+    comment: Enter signup link in menu
+    cascade: true
+  columns_for_laptop:
+    type: auto
+    comment: Default value is 3
+    cascade: true
+  columns_for_tablet:
+    type: auto
+    comment: Default value is 2
+    cascade: true
+  columns_for_mobile:
+    type: auto
+    comment: Default value is 1
+    cascade: true
+  site_title:
+    type: auto
+    comment: Enter the website title
+    cascade: true
+  description:
+    type: auto
+    comment: Enter the site description
+    cascade: true
+  permalink:
+    type: auto
+    comment: Page URL in slug format
+    cascade: true
+  website_url:
+    type: auto
+    comment: Enter live website domain
+    cascade: true
+  font-style_url:
+    type: auto
+    comment: Enter a google font url.
+    cascade: true
+  categories:
+    type: multiselect
+    options:
+      allow_create: true
+      empty_type: array
+    cascade: true
+  tags:
+    type: multiselect
+    options:
+      allow_create: true
+      empty_type: array
+    cascade: true
+_select_data:
+  columns_for_laptops:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 6
+  columns_for_tablets:
+    - 1
+    - 2
+    - 3
+    - 4
+  columns_for_mobiles:
+    - 1
+    - 2
+  hero_layouts:
+    - Image Left
+    - Image Right
+  caption_alignments:
+    - Left
+    - Center
+    - Right
+  counter_alignments:
+    - Left
+    - Center
+    - Right
+  content_alignments:
+    - Left
+    - Center
+    - Right
+  component_widths:
+    - Normal
+    - Wide
+  vertical_alignments:
+    - Top
+    - Center
+    - Bottom
+  mobile_image_orders:
+    - Top
+    - Bottom
+  image_types:
+    - contained
+    - stretched
+  portfolio_layouts:
+    - left-sidebar
+    - right-sidebar
+    - full-width
+  post_layouts:
+    - left-sidebar
+    - right-sidebar
+    - full-width
+  post_categories:
+    - Marketing
+    - Business
+    - Designs
+    - Relations
+    - Career Advice
+_structures:
+  content_blocks:
+    style: modal
+    values: []
+_snippets:
+  _cc_jekyll_unknown_paired_tag:
+    hidden: true
+    snippet: >-
+      {%[[trim_top_left]] [[name]][[args]]
+      [[trim_top_right]]%}[[content]]{%[[trim_bottom_left]] end[[name]]
+      [[trim_bottom_right]]%}
+    preview:
+      text: Unknown Shortcode
+      subtext:
+        - key: name
+      icon: question_mark
+    _inputs:
+      name:
+        type: auto
+        hidden: true
+        cascade: true
+      args:
+        type: auto
+        hidden: true
+        cascade: true
+      content:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_top_left:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_top_right:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_bottom_left:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_bottom_right:
+        type: auto
+        hidden: true
+        cascade: true
+    params:
+      content:
+        parser: content
+        options:
+          editor_key: content
+      name:
+        parser: argument
+        options:
+          model:
+            editor_key: name
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      args:
+        parser: content
+        options:
+          editor_key: args
+          raw: true
+          allow_nested: false
+      trim_top_left:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_top_left
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      trim_top_right:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_top_right
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      trim_bottom_left:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_bottom_left
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      trim_bottom_right:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_bottom_right
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+  _cc_jekyll_unknown_tag:
+    hidden: true
+    snippet: '{%[[trim_left]] [[name]][[args]] [[trim_right]]%}'
+    preview:
+      text: Unknown Shortcode
+      subtext:
+        - key: name
+      icon: question_mark
+    _inputs:
+      name:
+        type: auto
+        hidden: true
+        cascade: true
+      args:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_left:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_right:
+        type: auto
+        hidden: true
+        cascade: true
+    params:
+      name:
+        parser: argument
+        options:
+          model:
+            editor_key: name
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      args:
+        parser: content
+        options:
+          editor_key: args
+          raw: true
+          allow_nested: false
+      trim_left:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_left
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      trim_right:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_right
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+  jekyll_highlight:
+    inline: false
+    template: jekyll_paired_tag_positional_args
+    definitions:
+      tag_name: highlight
+      content_key: content
+      positional_args:
+        - editor_key: language
+          type: string
+        - editor_key: linenos
+          implied_boolean: true
+          default: linenos
+          allowed_values:
+            - linenos
+          optional: true
+    preview:
+      text: Highlight
+      subtext:
+        - key: language
+        - Code block with syntax highlighting.
+      icon: code
+    _inputs:
+      content:
+        type: code
+        cascade: true
+      language:
+        type: select
+        options:
+          value_key: value
+          text_key: name
+          values:
+            - value: abap
+              name: SAP
+            - value: actionscript
+              name: Actionscript
+            - value: apache
+              name: Apache
+            - value: apiblueprint
+              name: API Blueprint
+            - value: applescript
+              name: AppleScript
+            - value: awk
+              name: AWK
+            - value: biml
+              name: BIML
+            - value: brainfuck
+              name: Brainfuck
+            - value: bsl
+              name: BSL
+            - value: c
+              name: C
+            - value: ceylon
+              name: Ceylon
+            - value: cfscript
+              name: CFScript
+            - value: clojure
+              name: Clojure
+            - value: cmake
+              name: CMake
+            - value: coffeescript
+              name: Coffeescript
+            - value: common_lisp
+              name: Common Lisp
+            - value: conf
+              name: config
+            - value: console
+              name: Console
+            - value: coq
+              name: Coq
+            - value: cpp
+              name: C++
+            - value: crystal
+              name: Crystal
+            - value: csharp
+              name: C#
+            - value: css
+              name: Cascading Style Sheets
+            - value: d
+              name: D
+            - value: dart
+              name: Dart
+            - value: diff
+              name: Diff
+            - value: digdag
+              name: DigDag
+            - value: docker
+              name: Docker
+            - value: dot
+              name: Dot
+            - value: eiffel
+              name: Eiffel
+            - value: elixir
+              name: Elixir
+            - value: elm
+              name: Elm
+            - value: erb
+              name: Embedded ruby template files
+            - value: erlang
+              name: Erlang
+            - value: escape
+              name: Escape
+            - value: factor
+              name: Factor
+            - value: fortran
+              name: Fortran
+            - value: fsharp
+              name: F#
+            - value: gherkin
+              name: Gerkin
+            - value: glsl
+              name: GLSL
+            - value: go
+              name: Go
+            - value: gradle
+              name: Gradle
+            - value: graphql
+              name: GraphQL
+            - value: groovy
+              name: Groovy
+            - value: hack
+              name: Hack
+            - value: haml
+              name: Haml
+            - value: handlebars
+              name: Handlebars
+            - value: haskell
+              name: Haskell
+            - value: hcl
+              name: Hasicorp Configuration Language
+            - value: html
+              name: HTML
+            - value: http
+              name: http
+            - value: hylang
+              name: HyLang
+            - value: idlang
+              name: Interactive Data Language
+            - value: igorpro
+              name: WaveMetrics Igor Pro
+            - value: ini
+              name: INI
+            - value: io
+              name: IO
+            - value: irb
+              name: IRB
+            - value: java
+              name: Java
+            - value: javascript
+              name: JavaScript
+            - value: jinja
+              name: Jinja
+            - value: json
+              name: JSON
+            - value: json
+              name: JSON Doc
+            - value: jsonnet
+              name: JSON net
+            - value: jsp
+              name: JSP
+            - value: jsx
+              name: JSX
+            - value: julia
+              name: Julia
+            - value: kotlin
+              name: Kotlin
+            - value: lasso
+              name: Lasso
+            - value: liquid
+              name: Liquid
+            - value: literate_coffeescript
+              name: Literate CoffeeScript
+            - value: literate_haskell
+              name: Literate Haskell
+            - value: llvm
+              name: LLVM
+            - value: lua
+              name: Lua
+            - value: m68k
+              name: Motorola 68k Assembler
+            - value: magik
+              name: Smallworld Majik
+            - value: make
+              name: Makefile
+            - value: markdown
+              name: Markdown
+            - value: mathematica
+              name: Wolfram Mathmatica
+            - value: matlab
+              name: Matlab
+            - value: moonscript
+              name: Moonscript
+            - value: mosel
+              name: Mosel
+            - value: mxml
+              name: MXML
+            - value: nasm
+              name: Netwide Assembler
+            - value: nginx
+              name: Nginx configuration file
+            - value: nim
+              name: Nim
+            - value: nix
+              name: Nix
+            - value: objective_c
+              name: Objective-C
+            - value: ocaml
+              name: OCaml
+            - value: pascal
+              name: Pascal
+            - value: perl
+              name: Perl
+            - value: php
+              name: PHP
+            - value: plaintext
+              name: Plaintext
+            - value: plist
+              name: plist
+            - value: powershell
+              name: Powershell
+            - value: praat
+              name: Praat
+            - value: prolog
+              name: Prolog
+            - value: prometheus
+              name: Prometheus
+            - value: properties
+              name: Properties
+            - value: protobuf
+              name: Protocol Buffer
+            - value: puppet
+              name: Puppet
+            - value: python
+              name: Python
+            - value: q
+              name: Q
+            - value: qml
+              name: QML
+            - value: r
+              name: R
+            - value: racket
+              name: Racket
+            - value: ruby
+              name: Ruby
+            - value: rust
+              name: Rust
+            - value: sass
+              name: Sass
+            - value: scala
+              name: Scala
+            - value: scheme
+              name: Scheme
+            - value: scss
+              name: SCSS
+            - value: sed
+              name: sed
+            - value: shell
+              name: Shell
+            - value: sieve
+              name: Sieve
+            - value: slim
+              name: Slim
+            - value: smalltalk
+              name: Smalltalk
+            - value: smarty
+              name: Smarty
+            - value: sml
+              name: Standard ML
+            - value: sqf
+              name: Status Quo Function
+            - value: sql
+              name: Structured Query Language
+            - value: supercollider
+              name: Supercollider
+            - value: swift
+              name: Swift
+            - value: tap
+              name: TAP
+            - value: tcl
+              name: TCL
+            - value: terraform
+              name: Terraform
+            - value: tex
+              name: TeX
+            - value: toml
+              name: TOML
+            - value: tsx
+              name: tsx
+            - value: tulip
+              name: Tulip
+            - value: turtle
+              name: Turtle
+            - value: twig
+              name: Twig
+            - value: typescript
+              name: TypeScript
+            - value: vala
+              name: vala
+            - value: vb
+              name: Visual Basic
+            - value: verilog
+              name: Verilog
+            - value: vhdl
+              name: VHDL
+            - value: viml
+              name: VimL
+            - value: vue
+              name: Vue
+            - value: wollok
+              name: Wollok
+            - value: xml
+              name: XML
+            - value: xojo
+              name: Xojo
+            - value: yaml
+              name: Yaml
+        cascade: true
+  _cc_jekyll_template:
+    hidden: true
+    snippet: '{{[[trim_left]][[template]][[trim_right]]}}'
+    preview:
+      text: Template
+      subtext:
+        - key: template
+      icon: code
+    _inputs:
+      template:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_left:
+        type: auto
+        hidden: true
+        cascade: true
+      trim_right:
+        type: auto
+        hidden: true
+        cascade: true
+    params:
+      template:
+        parser: content
+        options:
+          editor_key: template
+          raw: true
+          allow_nested: false
+          forbidden_tokens:
+            - '{{'
+            - '{{-'
+      trim_left:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_left
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '}}'
+      trim_right:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_right
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '}}'
+  jekyll_raw:
+    snippet: >-
+      {%[[trim_top_left]] raw
+      [[trim_top_right]]%}[[content]]{%[[trim_bottom_left]] endraw
+      [[trim_bottom_right]]%}
+    preview:
+      text: Raw
+      icon: data_object
+    picker_preview:
+      subtext: Outputs Jekyll tags as plain text.
+    params:
+      content:
+        parser: content
+        options:
+          editor_key: content
+          allow_nested: false
+          raw: true
+      trim_top_left:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_top_left
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            default: '-'
+            optional: true
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      trim_top_right:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_top_right
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      trim_bottom_left:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_bottom_left
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+      trim_bottom_right:
+        parser: argument
+        options:
+          model:
+            editor_key: trim_bottom_right
+            implied_boolean: true
+            allowed_values:
+              - '-'
+            optional: true
+            default: '-'
+          format:
+            string_boundary:
+              - ''
+            forbidden_tokens:
+              - '%'
+    _inputs:
+      content:
+        type: code
+        cascade: true
+  jekyll_link:
+    template: jekyll_tag_positional_args
+    definitions:
+      tag_name: link
+      positional_args:
+        - editor_key: path
+          type: string
+    preview:
+      text: Link
+      subtext:
+        - key: path
+        - Links to the specified URL or path.
+      icon: link
+      view: inline
+    _inputs:
+      path:
+        type: url
+        comment: Enter the URL or path to link to.
+        cascade: true
+        text: Link
+  jekyll_post_url:
+    template: jekyll_tag_positional_args
+    definitions:
+      tag_name: post_url
+      positional_args:
+        - editor_key: post
+          type: string
+    preview:
+      text: Post URL
+      subtext:
+        - key: post
+        - Outputs the URL of the specified blog post.
+      icon: link
+      view: inline
+    _inputs:
+      post:
+        type: url
+        comment: Enter the post name or path.
+        cascade: true
+        text: Post
+timezone: Pacific/Auckland
